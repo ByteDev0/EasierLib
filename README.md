@@ -10,7 +10,7 @@ It's actually really simple to use, almost everything takes a single line.
 
 Initialize Easier Lib
 ```lua
-local Easier = loadstring(game:HttpGet("https://raw.githubusercontent.com/laeraz/EasierLib/refs/heads/main/EasierLibBasic.lua"))()
+local EasierLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/laeraz/EasierLib/refs/heads/main/EasierLibBasic.lua"))()
 ```
 
 Sending Chat Messages
@@ -60,7 +60,7 @@ This version is useable only on executors that has hookmetamethod and hookfuncti
 
 Initializing the Advanced version
 ```lua
-local Easier = loadstring(game:HttpGet("https://raw.githubusercontent.com/laeraz/EasierLib/refs/heads/main/EasierLibBetter.lua"))()
+local EasierLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/laeraz/EasierLib/refs/heads/main/EasierLibBetter.lua"))()
 ```
 
 Spoofing a Value
