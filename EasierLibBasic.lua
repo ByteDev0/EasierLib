@@ -133,4 +133,77 @@ EasierLib.TweenPos = function(instance, pos, duration)
     tween:Play()
 end
 
+EasierLib.SetWalkSpeed = function(speed)
+    if LocalChar and LocalChar:FindFirstChild("Humanoid") then
+        LocalChar.Humanoid.WalkSpeed = speed
+    end
+end
+
+-- example usage: EasierLib.SetWalkSpeed(100)
+
+EasierLib.SetJumpPower = function(power)
+    if LocalChar and LocalChar:FindFirstChild("Humanoid") then
+        LocalChar.Humanoid.JumpPower = power
+    end
+end
+
+-- example usage: EasierLib.SetJumpPower(100)
+
+EasierLib.TeleportToPart = function(part)
+    if part and part:IsA("BasePart") then
+        LocalChar.HumanoidRootPart.CFrame = part.CFrame
+    else
+        warn("[easier-lib] The provided object is not a valid part!")
+    end
+end
+
+-- example usage: EasierLib.TeleportToPart(workspace.PartName)
+
+EasierLib.CreateESPForPlayer = function(player)
+    if player.Character and player.Character:FindFirstChild("Head") then
+        local espBox = Instance.new("BoxHandleAdornment")
+        espBox.Adornee = player.Character:FindFirstChild("HumanoidRootPart")
+        espBox.Size = player.Character:GetExtentsSize()
+        espBox.Color3 = Color3.fromRGB(255, 0, 0)
+        espBox.Transparency = 0.5
+        espBox.AlwaysOnTop = true
+        espBox.Parent = player.Character
+
+        local nameLabel = Instance.new("TextLabel")
+        nameLabel.Parent = ScreenGui
+        nameLabel.Text = player.Name
+        nameLabel.BackgroundTransparency = 1
+        nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        nameLabel.Font = Enum.Font.SourceSansBold
+        nameLabel.TextSize = 14
+        nameLabel.Position = UDim2.new(0, 0, 0, -30)
+        nameLabel.TextStrokeTransparency = 0.8
+        nameLabel.TextYAlignment = Enum.TextYAlignment.Top
+
+        RunService.Heartbeat:Connect(function()
+            if player.Character and player.Character:FindFirstChild("Head") then
+                local headPos = Camera:WorldToViewportPoint(player.Character.Head.Position)
+                nameLabel.Position = UDim2.new(0, headPos.X - nameLabel.TextBounds.X / 2, 0, headPos.Y - nameLabel.TextBounds.Y - 10)
+            else
+                nameLabel:Destroy()
+                espBox:Destroy()
+            end
+        end)
+    end
+end
+
+-- example usage: EasierLib.CreateESPForPlayer(game.Players.PlayerName)
+
+EasierLib.RemoveESPForPlayer = function(player)
+    if player.Character then
+        for index, value in next, player.Character:GetChildren() do
+            if value:IsA("BoxHandleAdornment") then
+                value:Destroy()
+            end
+        end
+    end
+end
+
+-- example usage: EasierLib.RemoveESPForPlayer(game.Players.PlayerName)
+
 return EasierLib
