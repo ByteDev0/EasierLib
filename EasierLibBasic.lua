@@ -53,7 +53,9 @@ EasierLib.SendChatMessage = function(msg)
     return Chat:SendAsync(msg)
 end
 
-EasierLib.ChangeValue = function(path, newval)
+-- example usage: EasierLib.SendChatMessage("real")
+
+EasierLib.ChangeValue = function(path, newval) -- kinda pointless, ran out of ideas :sob:
     path.Value = newval
 end
 
@@ -70,11 +72,14 @@ EasierLib.SendWebhook = function(webhooklink, content)
             })
         })
 
-        warn("webhook succesfully sent!")
+        warn("[easier-lib] webhook succesfully sent!")
     else
         warn("[easier-lib] the link and the webhook content must be a string.")
     end
 end
+
+-- dont spam SendWebhook, it may cause crashes.
+-- example usage: EasierLib.SendWebhook("https://webhooklink.com", "webhook message")
 
 EasierLib.Notification = function(name, content, duration)
     local notif = Instance.new("TextLabel")
@@ -98,12 +103,34 @@ EasierLib.Notification = function(name, content, duration)
     notif:Destroy()
 end
 
---[[
-    example aimbot with easierlib
-    RunService.RenderStepped:Connect(function()
-        local Target = EasierLib.GetClosestPlayerOnScreen()
-        Camera.CFrame = CFrame.new(Camera.CFrame.Position, Target.Character.Head.Position)
-    end)
-]]
+-- example usage: EasierLib.Notification("script-name", "i like kissing boys :3", 5)
+
+EasierLib.CrashGame = function() -- thought it was funny
+    while true do print("crashed") end
+end
+
+EasierLib.TeleportToPlayer = function(player)
+    LocalChar.HumanoidRootPart.CFrame = Players[player].Character.HumanoidRootPart.CFrame
+end
+
+-- example usage: EasierLib.TeleportToPlayer("PlayerName")
+
+EasierLib.TeleportToCFrame = function(cframe)
+    LocalChar.HumanoidRootPart.CFrame = cframe
+end
+
+-- example usage: EasierLib.TeleportToCFrame(CFrame.new(1, 1, 1))
+
+EasierLib.TweenCFrame = function(instance, cframe, duration)	
+	local tween = TweenService:Create(instance, TweenInfo.new(duration), {CFrame = cframe})
+	tween:Play()
+end
+
+-- example usage: EasierLib.TweenCFrame(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, CFrame.new(1, 1, 1), 2)
+
+EasierLib.TweenPos = function(instance, pos, duration)
+    local tween = TweenService:Create(instance, TweenInfo.new(duration), {Position = pos})
+    tween:Play()
+end
 
 return EasierLib
