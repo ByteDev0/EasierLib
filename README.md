@@ -1,0 +1,2 @@
+# EasierLib
+Making scripting easier.
