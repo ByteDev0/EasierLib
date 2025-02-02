@@ -49,7 +49,7 @@ EasierLib.GetClosestPlayerOnScreen = function()
     return ClosestPlayer
 end
 
-SendChatMessage = function(msg)
+EasierLib.SendChatMessage = function(msg)
     return Chat:SendAsync(msg)
 end
 
