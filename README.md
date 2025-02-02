@@ -63,6 +63,11 @@ Initializing the Advanced version
 local EasierLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/laeraz/EasierLib/refs/heads/main/EasierLibBetter.lua"))()
 ```
 
+Spoofing WalkSpeed
+```lua
+EasierLib.SpoofWalkSpeed(16)
+```
+
 Spoofing a Value
 ```lua
 EasierLib.SpoofValue(game:GetService("Players").LocalPlayer.Currency, math.huge)
